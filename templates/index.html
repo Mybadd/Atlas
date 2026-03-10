@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STEP → 2D Illustration Generator</title>
+    <meta name="description" content="Convert 3D STEP files to high-quality 2D technical illustrations for instruction manuals." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+    <div class="bg-orbs">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+    </div>
+
+    <header>
+        <div class="logo">
+            <span class="logo-icon">⬡</span>
+            <span class="logo-text">Atlas<span class="accent">Draw</span></span>
+        </div>
+        <p class="tagline">3D STEP Files → Professional 2D Illustrations</p>
+    </header>
+
+    <main>
+        <!-- Upload Section -->
+        <section class="card upload-card">
+            <h2 class="card-title">
+                <span class="step-badge">01</span>
+                Upload STEP File
+            </h2>
+            <div class="drop-zone" id="dropZone">
+                <div class="drop-icon">📐</div>
+                <div class="drop-label">Drag & drop your <strong>.step</strong> or <strong>.stp</strong> file here</div>
+                <div class="drop-sub">or</div>
+                <label class="btn btn-outline" for="fileInput">Browse File</label>
+                <input type="file" id="fileInput" accept=".step,.stp" hidden />
+                <div class="file-status" id="fileStatus"></div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section class="card settings-card">
+            <h2 class="card-title">
+                <span class="step-badge">02</span>
+                Configure Output
+            </h2>
+
+            <div class="settings-grid">
+                <div class="setting-group">
+                    <label class="setting-label">View Mode</label>
+                    <div class="chip-group" id="viewGroup">
+                        <button class="chip active" data-value="isometric">Isometric</button>
+                        <button class="chip" data-value="front">Front</button>
+                        <button class="chip" data-value="top">Top</button>
+                        <button class="chip" data-value="side">Side</button>
+                        <button class="chip" data-value="back">Back</button>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <label class="setting-label">Visual Style</label>
+                    <div class="chip-group" id="styleGroup">
+                        <button class="chip active" data-value="technical">Technical</button>
+                        <button class="chip" data-value="blueprint">Blueprint</button>
+                        <button class="chip" data-value="shaded">Shaded</button>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <label class="setting-label">Output Format</label>
+                    <div class="chip-group" id="formatGroup">
+                        <button class="chip active" data-value="png">PNG</button>
+                        <button class="chip" data-value="jpeg">JPEG</button>
+                    </div>
+                </div>
+
+                <div class="setting-group full-width">
+                    <label class="setting-label" for="titleInput">Illustration Title</label>
+                    <input class="text-input" id="titleInput" type="text" placeholder="e.g. Assembly Step 3 – Bracket Mount" value="Technical Illustration" />
+                </div>
+
+                <div class="setting-group full-width">
+                    <label class="setting-label" for="calloutInput">Callout Note (optional)</label>
+                    <input class="text-input" id="calloutInput" type="text" placeholder="e.g. Torque to 5 Nm  |  See Part No. A-42" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Generate Button -->
+        <div class="action-row">
+            <button class="btn btn-primary" id="generateBtn" disabled>
+                <span id="btnText">Generate Illustration</span>
+                <span id="btnLoader" class="spinner hidden"></span>
+            </button>
+        </div>
+
+        <!-- Output Section -->
+        <section class="card output-card hidden" id="outputCard">
+            <h2 class="card-title">
+                <span class="step-badge done">✓</span>
+                Generated Illustration
+            </h2>
+            <div class="preview-wrap">
+                <img id="previewImg" class="preview-img" src="" alt="Generated illustration preview" />
+            </div>
+            <div class="output-actions">
+                <a class="btn btn-primary" id="downloadBtn" href="#" download>⬇ Download Image</a>
+                <button class="btn btn-outline" id="regenerateBtn">↺ New Settings</button>
+            </div>
+        </section>
+
+        <!-- Error Banner -->
+        <div class="error-banner hidden" id="errorBanner"></div>
+    </main>
+
+    <footer>
+        <p>AtlasDraw · Powered by CadQuery (pythonOCC) + Pillow · Built for Technical Writers</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

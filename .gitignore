@@ -1,0 +1,22 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# VS Code environment
+.vscode/
+
+# Project specific
+uploads/
+outputs/
+*.step
+*.stp
+*.png
+*.jpg
+*.jpeg
